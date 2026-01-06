@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    height: 1200px; /* เพื่อให้เห็น fixed ตอนเลื่อน */
+}
+
+.box {
+    width: 200px;
+    height: 80px;
+    background: #4fa3ff;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 18px;
+}
+
+/* static */
+.static {
+    position: static;
+    border: 2px solid #dc83ff;
+}
+
+/* relative */
+.relative {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    background: #ff6f91;
+}
+
+/* absolute parent */
+.absolute-parent {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    background: #ddd;
+    margin-bottom: 40px;
+    border: 2px dashed gray;
+}
+
+/* absolute child */
+.absolute {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    background: #ff4444;
+}
+
+/* fixed */
+.fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    background: #7aeaa8;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Static -->
+<div class="box static">
+    position: static<br>(อยู่ตำแหน่งปกติ)
+</div>
+
+<!-- Relative -->
+<div class="box relative">
+    position: relative<br>(ขยับจากตำแหน่งเดิม)
+</div>
+
+<!-- Absolute -->
+<h2>absolute (ลอยบน parent)</h2>
+<div class="absolute-parent">
+    <div class="box absolute">
+        position: absolute
+    </div>
+</div>
+
+<!-- Fixed -->
+<div class="box fixed">
+    position: fixed<br>(ติดหน้าจอ)
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.block-example div {
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #c8e6ff; /* สีฟ้า */
+}
+
+.inline-example span {
+    display: inline;
+    padding: 5px;
+    background-color: #ffc8c8; /* สีชมพู */
+    margin-top: 5px;
+}
+
+.inline-block-example div {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    background-color: #d2ffd2; /* สีเขียว */
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #4caf50;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>display: block;</h2>
+<div class="block-example">
+    กินพื้นที่เต็มบรรทัด และขึ้นบรรทัดใหม่เสมอ
+    <div>block 1</div>
+    <div>block 2</div>
+</div>
+
+<h3>display: inline;</h3>
+<div class="inline-example">
+    อยู่ในบรรทัดเดียวกัน และไม่สามารถกำหนด width กับ height ได้
+    <br>
+    <span>inline 1</span>
+    <span>inline 2</span>
+    <span>inline 3</span>
+</div>
+
+<h3>display: inline-block;</h3>
+<div class="inline-block-example">
+    รวมข้อดีของ inline และ block
+    <br>
+    <div>Box A</div>
+    <div>Box B</div>
+    <div>Box C</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.flex-box {
+    display: flex;
+    flex-direction: column; /* เรียงแนวตั้ง */
+    gap: 10px;
+    background: #f0f0f0;
+    padding: 15px;
+    border: 2px solid #ccc;
+    height: 200px; /* เพิ่มความสูงเพื่อให้เห็นการจัดวาง*/
+}
+
+.item {
+    background: navy;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* แสดงกรณี stretch */
+.stretch .item {
+    background: teal;
+    height: auto;
+}
+</style>
+</head>
+
+<body>
+<!----==================-->
+<h2>1) justify-content: center</h2>
+<div class="flex-box" style="justify-content: center;">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+</div>
+
+<!----==================-->
+<h2>2) justify-content: space-between</h2>
+<div class="flex-box" style="justify-content: space-between;">
+    <div class="item">A</div>
+    <div class="item">B</div>
+    <div class="item">C</div>
+</div>
+
+<!----==================-->
+<h2>3) align-items: center (จัดตรงกลาง_"แนวนอน")</h2>
+<div class="flex-box" style="align-items: center;">
+    <div class="item" style="width: 40px;">X</div>
+    <div class="item" style="width: 60px;">Y</div>
+    <div class="item" style="width: 30px;">Z</div>
+</div>
+
+<!----==================-->
+<h2>4) align-items: stretch</h2>
+<div class="flex-box stretch" style="align-items: stretch;">
+    <div class="item">One</div>
+    <div class="item">Two</div>
+    <div class="item">Three</div>
+</div>
+
+</body>
+</html>
