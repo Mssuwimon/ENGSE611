@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ตัวอย่างตารางสมบูรณ์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin-bottom: 40px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>ตารางแสดงข้อมูลนักเรียน</h2>
+
+    <table>
+        <caption>คะแนนสอบปลายภาค</caption>
+        <thead>
+            <tr>
+                <th>ลำดับ</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>คะแนนสอบ</th>
+                <th>เกรด</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>สมชาย ใจดี</td>
+                <td>88</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>สายฝน แสนสุข</td>
+                <td>75</td>
+                <td>B</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ณัฐพล กล้าหาญ</td>
+                <td>62</td>
+                <td>C</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>วรินทร สายชล</td>
+                <td>95</td>
+                <td>A+</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">รวม</td>
+                <td>320</td>
+                <td>-</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2>ตัวอย่างการใช้ colspan และ rowspan</h2>
+
+    <table>
+        <caption>ตัวอย่างตาราง colspan / rowspan</caption>
+        <tr>
+            <th>หัวข้อ</th>
+            <th>รายละเอียด</th>
+            <th>หมายเหตุ</th>
+        </tr>
+        <tr>
+            <td colspan="2">รวมสองหัวข้อในหนึ่ง cell</td>
+            <td>สำหรับแสดง colspan</td>
+        </tr>
+        <tr>
+            <td rowspan="2">รวมสองแถว</td>
+            <td>Data แถว 1</td>
+            <td>สำหรับ rowspan</td>
+        </tr>
+        <tr>
+            <td>Data แถว 2</td>
+            <td>สำหรับ rowspan ต่อ</td>
+        </tr>
+        <tr>
+            <td>หัวข้อแยก</td>
+            <td>Data แถว 3</td>
+            <td>ปกติ</td>
+        </tr>
+    </table>
+
+</body>
+</html>
