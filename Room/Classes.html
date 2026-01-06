@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+/* กล่องหลัก */
+.card {
+    background: white;
+    padding: 20px;
+    border: 10px;
+}
+
+/* เงาของการ์ด */
+.card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}   
+
+/* ปุ่มพื้นฐาน */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;  /* cursorคือลักษณะของเมาส์ ว่าจะเป็นนรูปอะไร*/
+}
+
+/* ปุ่มแบบ primary */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="card shadow"> <!---- ใช้ 2 คลาสพร้อมกัน-->
+        <h2 class="card-title">หนาวมั้ยย</h2>
+        <p class="card-text">ก็หนาวอยู่น้า แม่น้าาา</p>
+
+    <!-----ปุ่มใช้คลาส btn+btn-primary---->
+        <button class="btn btn-primary">Click Me</button>
+    </div>
+</body>
+</html>
