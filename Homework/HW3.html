@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Layout with Flexbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+
+        /* Container สำหรับการ์ด */
+        .card-container {
+            display: flex;              /* ใช้ Flexbox */
+            gap: 20px;                  /* ระยะห่างระหว่างการ์ด */
+            justify-content: center;    /* จัดกลางแนวนอน */
+        }
+
+        /* การ์ดแต่ละใบ */
+        .card {
+            background-color: #ffffff;  /* พื้นหลังสีอ่อน */
+            width: 250px;
+            padding: 20px;
+            border-radius: 12px;        /* มุมโค้ง */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* เงา */
+            transition: transform 0.3s ease; /* animation ตอน hover */
+        }
+
+        /* Hover effect */
+        .card:hover {
+            transform: scale(1.05);     /* ขยายเล็กน้อย */
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card">
+            <h3>Card 1</h3>
+            <p>คำอธิบายของการ์ดใบที่หนึ่ง</p>
+        </div>
+
+        <div class="card">
+            <h3>Card 2</h3>
+            <p>คำอธิบายของการ์ดใบที่สอง</p>
+        </div>
+
+        <div class="card">
+            <h3>Card 3</h3>
+            <p>คำอธิบายของการ์ดใบที่สาม</p>
+        </div>
+    </div>
+
+</body>
+</html>
