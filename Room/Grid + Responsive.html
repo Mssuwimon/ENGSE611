@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    /*=========================
+    Grid Container
+    =========================*/
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1; /* มือถือ 1 คอลัมน์*/
+        gap: 15px; /* ระยะห่างระหว่างช่อง */
+        padding: 5px;
+        background: #e9edf2;
+        border-radius: 10px;
+    }
+
+    /* กล่องเนื้อหา */
+    .item {
+        background: #0f2557;
+        color: #ffffff;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+
+    /*=========================
+    Responsive: แท็บเล็ตขึ้นไป
+    =========================*/
+    @media (min-width: 768px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr); /* 2 คอลัมน์ */
+        }
+    }
+
+    /*=========================
+    Responsive: เดสก์ท็อปขึ้นไป
+    =========================*/
+    @media (min-width: 1024px) {
+        .grid-container {
+            grid-template-columns: repeat(4, 1fr); /* 4 คอลัมน์ */
+            max-width: 1200px;
+            margin: 0 auto; /* จัดกึ่งกลาง */
+        }
+    }
+</style>
+</head>
+<body>
+
+    <h1>Grid Responsive</h1>
+
+    <div class="grid-container">
+        <div class="item">item 1</div>
+        <div class="item">item 2</div>
+        <div class="item">item 3</div>
+        <div class="item">item 4</div>
+        <div class="item">item 5</div>
+        <div class="item">item 6</div>
+        <div class="item">item 7</div>
+        <div class="item">item 8</div>
+    </div>
+</body>
+</html>
