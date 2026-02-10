@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>For Loop Multiple Variables</title>
+</head>
+<body>
+
+<h3>for Loop แบบหลายตัวแปร</h3>
+
+<div id="output">กำลังรัน...</div>
+<p><strong>หมายเหตุ:</strong> ผลลัพธ์จริงดูใน <span style="color:red;">Console</span> ด้วย</p>
+
+<script>
+let output = "";
+
+// for loop หลายตัวแปร
+for (let i = 0, j = 100; i != j; i += 5, j -= 5) {
+    output += `i = ${i}, j = ${j}\n`;
+    console.log(`i = %d, j = %d`, i, j); // แสดงใน Console
+}
+
+// หลังจบ loop
+output += "Loop ended";
+console.log("Loop ended");
+
+// แสดงผลหน้าเว็บ
+document.getElementById("output").textContent = output;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Number Stair</title>
+</head>
+<body>
+
+<h3>Output:</h3>
+<pre id="output"></pre>
+
+<script>
+let buffer = "";
+let size = 8;
+
+for (let i = 1; i <= size; i++) {
+    for (let j = 1; j <= i; j++) {
+        buffer += j;
+    }
+    buffer += "\n";
+}
+
+// แสดงผลหน้าเว็บ
+document.getElementById("output").textContent = buffer;
+
+// แสดงผลใน console
+console.log("--- Console Output ---");
+console.log(buffer);
+</script>
+
+</body>
+</html>

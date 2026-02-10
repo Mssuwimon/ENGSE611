@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Run Demo</title>
+</head>
+<body>
+
+<button onclick="runDemo()">Run Code</button>
+
+<pre id="outputBox"></pre>
+
+<script>
+function runDemo() {
+    console.clear();
+    const output = [];
+
+    let a = 10;
+    let b = 3;
+
+    // คำนวณพื้นฐาน
+    output.push("a + b = " + (a + b));
+    output.push("a % b = " + (a % b));
+    output.push("a ** b = " + (a ** b));
+
+    // Math object
+    output.push("ปัดเศษ 3.7: " + Math.round(3.7));
+    output.push("ปัดลง 3.7: " + Math.floor(3.7));
+    output.push("ปัดขึ้น 3.2: " + Math.ceil(3.2));
+
+    let rand = Math.random();
+    output.push("สุ่ม 0-1: " + rand);
+
+    // สุ่มลูกเต๋า
+    let dice = Math.floor(Math.random() * 6) + 1;
+    output.push("ทอยลูกเต๋าได้: " + dice);
+
+    // แสดงผล
+    document.getElementById("outputBox").textContent = output.join("\n");
+}
+</script>
+
+</body>
+</html>
