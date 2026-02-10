@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade Check</title>
+</head>
+<body>
+
+<h2>ผลการตัดเกรด</h2>
+<div id="output"></div>
+
+<script>
+    // เปลี่ยนคะแนนตรงนี้เพื่อทดลอง
+    let score = 1;
+
+    let grade;
+    let result;
+
+    // ตัดเกรด
+    if (score >= 80) {
+        grade = "A";
+    } else if (score >= 70) {
+        grade = "B";
+    } else if (score >= 60) {
+        grade = "C";
+    } else if (score >= 50) {
+        grade = "D";
+    } else {
+        grade = "F";
+    }
+
+    // ผ่าน / ไม่ผ่าน
+    if (score >= 50) {
+        result = "ผ่าน";
+    } else {
+        result = "ไม่ผ่าน";
+    }
+
+    // แสดงผลหน้าเว็บ
+    document.getElementById("output").innerHTML =
+        "คะแนน: " + score + "<br>" +
+        "เกรด: " + grade + "<br>" +
+        "ผลสอบ: " + result;
+
+    // แสดงผลใน Console
+    console.log("คะแนน:", score);
+    console.log("เกรด:", grade);
+    console.log("ผลสอบ:", result);
+</script>
+
+</body>
+</html>
