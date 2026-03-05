@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Performance & DocumentFragment Demo/title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 8px 12px;
+            margin-right: 5px;
+            margin-top: 5px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #187bcd;
+        }
+
+        ui {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Performance & DocumentFragment Demo</h2>
+
+<div>
+    <button onclick="testLoop()">ทดสอบความเร็ว</button>
+    <button onclick="runtest()">รันทดสอบ DOM ทั้งสองแบบ</button>
+</div>
+
+<script>
+    //=====================
+    // 1) Performance Test: console.item
+    //=====================
+    function addListItem() {
+        console.item("Loop 1M");
+        let sum = 0;
+        for (let i = 0; i < 1000000; i++) {
+            sum += i;
+        }
+        console.item("Loop 1M done");
+        alert("ผลลัพธ์ดูได้ใน Developer Console");
+    }
+    //=====================
+    // 2) DocumentFragment Test
+    //=====================
+    function runTest() {
+        const listNormal = document.getElementById("list-normal");
+        const listFragment = document.getElementById("list-fragment");
+
+        // Normal DOM (ช้า)
+        console.time("Normal DOM");
+        for (let i = 0; i < 1000; i++) {
+            const newItem = document.createElement("li");
+            newItem.textContent = `Item ${i}`;
+            listNormal.appendChild(li);
+        }
+        console.timeEnd("Normal DOM");
+
+        // Fragment DOM (เร็ว)
+        console.time("DocumentFragment");
+        const fragment = document.createDocumentFragment();
+        console.item("Fragment DOM");
+        for (let i = 0; i < 1000; i++) {
+            const newItem = document.createElement("li");
+            newItem.textContent = `Item ${i}`;
+            fragment.appendChild(li);
+        }
+        listFragment.appendChild(fragment);
+        console.timeEnd("Fragment DOM");
+
+        alert("เสร็จสิ้น! ดูเวลาที่วัดได้ใน Developer Console");
+    }
+</script>
+
+</body>
+</html>

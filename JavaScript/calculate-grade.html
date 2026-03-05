@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculate Grade</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f6f9;
+        padding:40px
+    }
+
+    .container{
+        max-width:500px;
+        margin:auto;
+    }
+
+    input{
+        padding:8px;
+        width:150px;
+        margin-right:10px;
+    }
+
+    button{
+        padding:8px 15px;
+        background:#2da7df;
+        color:white;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#1f2937;
+    }
+
+    #outputBox{
+        margin-top:20px;
+        background:#1f2937;
+        color:white;
+        padding:15px;
+        border-radius:8px;
+        white-space: pre-line;
+    }
+</style> 
+</head>
+<body>
+
+<p><b> กรอกคะแนน:</b></p>
+<input type="number" id="scoreInput" placeholder="0 - 100">
+<button onclick="runGrade()">คำนวณเกรด</button><br><br>
+<div id="outputBox">ผลลัพธ์จะปรากฏอยู่ที่นี่​...</div>
+
+<script>
+    function calculateGrade(score) {
+        if (score >= 80){
+            return "A";
+        } else if (score >= 70){
+            return "B";
+        } else if (score >= 60){
+            return "C";
+        } else if (score >= 50){
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+
+    function runGrade() {
+        const output = [];
+        let score = Number(document.getElementById("scoreInput").value);
+
+        //ตรวจค่าว่างหรือผิด
+        if (isNaN(score) || score < 0 || score > 100) {
+            output.push("กรุณากรอกคะแนนที่ถูกต้อง (0 - 100)");
+            document.getElementById("outputBox").textContent = output.join("\n");
+            return;
+        }
+
+        let grade = calculateGrade(score);
+
+        output.push("คะแนน: " + score);
+        output.push("เกรดที่ได้: " + grade);
+
+        console.log("คะแนน: " , score);
+        console.log("เกรด: " , grade);
+
+        document.getElementById("outputBox").textContent = output.join("\n");
+    }
+</script>
+</body>
+</html>

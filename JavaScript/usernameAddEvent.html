@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form Events Example</title>
+<style>
+    body{
+        font-family: Arial;
+        padding:40px;
+    }
+
+    input{
+        padding:10px;
+        font-size:16px;
+        border:2px solid #ccc;
+        border-radius:6px;
+        outline:none;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Username</h2>
+
+<input type="text" id="username" placeholder="Enter username">
+
+<script>
+
+let username = document.getElementById("username");
+
+/* ตอนคลิกเข้า input */
+username.addEventListener("focus", function(){
+    this.style.backgroundColor = "#e3f2fd";
+});
+
+/* ตอนคลิกออกจาก input */
+username.addEventListener("blur", function(){
+
+    this.style.backgroundColor = "";
+
+    if(this.value.length < 3){
+        this.style.borderColor = "red";
+    }else{
+        this.style.borderColor = "green";
+    }
+
+});
+
+</script>
+
+</body>
+</html>

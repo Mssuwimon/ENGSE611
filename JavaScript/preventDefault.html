@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>preventDefault Demo</title>
+
+<style>
+body{
+    font-family: Arial;
+    margin:40px;
+}
+
+.box{
+    border:1px solid #ccc;
+    padding:20px;
+    margin-bottom:30px;
+}
+
+button{
+    padding:5px 10px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>1) ตัวอย่าง preventDefault() - หยุดการส่งฟอร์ม</h2>
+
+<div class="box">
+
+<form id="myForm">
+
+<input class="form-input" type="text" placeholder="ลองพิมพ์แล้วกด Enter">
+
+<button type="submit">ส่ง</button>
+
+</form>
+
+<p id="result" style="color:green; font-weight:bold;"></p>
+
+</div>
+
+
+
+<h2>2) ตัวอย่าง stopPropagation() - หยุด Event Bubbling</h2>
+
+<div class="box">
+
+<div id="parent" style="padding:20px; background:#eee;">
+
+Parent Element
+
+<button id="child">Child Button</button>
+
+</div>
+
+<p>(ดูผลลัพธ์ใน Console)</p>
+
+</div>
+
+
+
+<script>
+
+// ======================
+// preventDefault()
+// ======================
+
+const form = document.getElementById("myForm");
+const result = document.getElementById("result");
+
+form.addEventListener("submit", function(event){
+
+event.preventDefault(); // หยุดไม่ให้ฟอร์ม reload หน้า
+
+result.textContent = "ฟอร์มถูกหยุดแล้ว!";
+
+});
+
+
+// ======================
+// stopPropagation()
+// ======================
+
+const parent = document.getElementById("parent");
+const child = document.getElementById("child");
+
+parent.addEventListener("click", function(){
+
+console.log("Parent ถูกคลิก");
+
+});
+
+child.addEventListener("click", function(event){
+
+event.stopPropagation(); // ไม่ให้ event วิ่งขึ้นไป parent
+
+console.log("เฉพาะ Child ถูกคลิก");
+
+});
+
+</script>
+
+</body>
+</html>
