@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Search Product Example</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+.search-card{
+    background:white;
+    width:400px;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.search-input{
+    width:100%;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.result-list{
+    list-style:none;
+    padding:0;
+    margin-top:15px;
+}
+
+.result-list li{
+    padding:8px;
+    border-bottom:1px solid #eee;
+}
+
+.no-result{
+    margin-top:15px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="search-card">
+
+<input type="text" id="searchInput" class="search-input"
+placeholder="ค้นหาสินค้า... (เช่น iPhone, MacBook)">
+
+<ul id="resultList" class="result-list"></ul>
+
+<div id="noResult" class="no-result"></div>
+
+</div>
+
+<script>
+
+// ข้อมูลตัวอย่างใน Array (สมมติเป็นสินค้า)
+const products = [
+"iPhone 15",
+"iPhone 15 Pro",
+"iPhone 14",
+"iPad Pro",
+"iPad Air",
+"MacBook Air",
+"MacBook Pro",
+"Apple Watch",
+"AirPods Pro",
+"iMac 24\"",
+"Magic Keyboard"
+];
+
+const searchInput = document.getElementById("searchInput");
+const resultList = document.getElementById("resultList");
+const noResult = document.getElementById("noResult");
+
+
+// ฟังก์ชัน Debounce (หน่วงการเรียก callback)
+function debounce(fn, delay){
+let timeoutId;
+
+return function(...args){
+clearTimeout(timeoutId);
+
+timeoutId = setTimeout(()=>{
+fn.apply(this,args);
+},delay);
+
+};
+
+}
+
+
+// ฟังก์ชันค้นหา
+function handleSearch(){
+
+const query = searchInput.value.trim().toLowerCase();
+
+resultList.innerHTML = "";
+noResult.textContent = "";
+
+if(query === ""){
+noResult.textContent = "พิมพ์คำค้นหาเพื่อแสดงรายการสินค้า...";
+return;
+}
+
+const filtered = products.filter(item =>
+item.toLowerCase().includes(query)
+);
+
+if(filtered.length === 0){
+noResult.textContent = "ไม่พบผลลัพธ์ที่ตรงกับ \"" + query + "\"";
+return;
+}
+
+filtered.forEach(item =>{
+
+const li = document.createElement("li");
+li.textContent = item;
+
+resultList.appendChild(li);
+
+});
+
+}
+
+
+// ผูก event พร้อม Debounce 300ms
+const debouncedSearch = debounce(handleSearch,300);
+
+searchInput.addEventListener("input",debouncedSearch);
+
+
+// ข้อความเริ่มต้น
+noResult.textContent = "พิมพ์คำค้นหาเพื่อแสดงรายการสินค้า...";
+
+</script>
+
+</body>
+</html>

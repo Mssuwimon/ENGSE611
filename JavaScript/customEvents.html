@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Shopping Cart</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#cart{
+    border:1px solid #ccc;
+    width:250px;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.btn-area{
+    margin-top:20px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:6px;
+    color:white;
+    cursor:pointer;
+    margin:5px;
+}
+
+.btn-iphone{
+    background:#2d7df6;
+}
+
+.btn-mac{
+    background:#2ecc71;
+}
+</style>
+</head>
+
+<body>
+
+<!-- กล่องแสดงจำนวนสินค้า -->
+<div id="cart">
+<strong>My Cart</strong>
+<p>จำนวนสินค้า: <span id="item-count">0</span></p>
+</div>
+
+<div class="btn-area">
+<button id="add-iphone" class="btn-iphone">เพิ่ม iPhone</button>
+<button id="add-macbook" class="btn-mac">เพิ่ม MacBook</button>
+</div>
+
+<script>
+
+// ShoppingCart class
+class ShoppingCart {
+
+constructor(element){
+    this.element = element
+    this.items = []
+}
+
+addItem(product){
+
+    this.items.push(product)
+
+    const event = new CustomEvent('itemAdded',{
+        detail:{
+            product:product,
+            total:this.items.length
+        }
+    })
+
+    this.element.dispatchEvent(event)
+
+}
+
+}
+
+// เริ่มใช้งาน
+const cartElement = document.getElementById('cart')
+const countElement = document.getElementById('item-count')
+
+const cart = new ShoppingCart(cartElement)
+
+
+// ฟัง Custom Event
+cartElement.addEventListener('itemAdded',(e)=>{
+
+    countElement.textContent = e.detail.total
+
+    console.log("เพิ่มสินค้า:",e.detail.product,"รวม:",e.detail.total)
+
+})
+
+
+// ปุ่มเพิ่มสินค้า
+document.getElementById("add-iphone").addEventListener("click",()=>{
+
+    cart.addItem("iPhone")
+
+})
+
+document.getElementById("add-macbook").addEventListener("click",()=>{
+
+    cart.addItem("MacBook")
+
+})
+
+</script>
+
+</body>
+</html>

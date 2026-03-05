@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Todo List – DOM Basic</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f6f8;
+    display:flex;
+    justify-content:center;
+    margin-top:80px;
+}
+
+.container{
+    width:500px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+.hint{
+    text-align:center;
+    color:#777;
+    font-size:14px;
+}
+
+.todo-input-row{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+#todoInput{
+    flex:1;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.btn{
+    padding:10px 15px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-danger{
+    background:#ef4444;
+    color:white;
+}
+
+.btn-small{
+    padding:6px 10px;
+}
+
+#todoList{
+    list-style:none;
+    padding:0;
+    margin-top:15px;
+}
+
+.todo-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#f1f2f4;
+    padding:10px;
+    border-radius:6px;
+    margin-bottom:8px;
+}
+
+.todo-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:#999;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h1>Todo List – DOM Basic</h1>
+
+<p class="hint">
+พิมพ์งานที่ต้องทำ แล้วกด "เพิ่ม" สามารถติ๊กว่าสำเร็จ / ลบงานได้
+</p>
+
+<div class="todo-input-row">
+<input type="text" id="todoInput" placeholder="พิมพ์งานที่ต้องทำ...">
+<button id="addTodoBtn" class="btn btn-primary">เพิ่ม</button>
+</div>
+
+<ul id="todoList"></ul>
+
+</div>
+
+
+<script>
+
+const todoInput = document.querySelector("#todoInput");
+const addTodoBtn = document.querySelector("#addTodoBtn");
+const todoList = document.querySelector("#todoList");
+
+function createTodoItem(text){
+
+const li = document.createElement("li");
+li.classList.add("todo-item");
+
+const leftDiv = document.createElement("div");
+leftDiv.classList.add("todo-left");
+
+const checkbox = document.createElement("input");
+checkbox.type = "checkbox";
+
+const span = document.createElement("span");
+span.textContent = text;
+
+leftDiv.appendChild(checkbox);
+leftDiv.appendChild(span);
+
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "ลบ";
+deleteBtn.classList.add("btn","btn-danger","btn-small");
+
+li.appendChild(leftDiv);
+li.appendChild(deleteBtn);
+
+
+/* events */
+
+checkbox.addEventListener("change",()=>{
+span.classList.toggle("completed");
+});
+
+deleteBtn.addEventListener("click",()=>{
+li.remove();
+});
+
+return li;
+
+}
+
+
+function addTodo(){
+
+const text = todoInput.value.trim();
+
+if(text === ""){
+return;
+}
+
+const todoItem = createTodoItem(text);
+
+todoList.appendChild(todoItem);
+
+todoInput.value="";
+todoInput.focus();
+
+}
+
+
+addTodoBtn.addEventListener("click",addTodo);
+
+todoInput.addEventListener("keyup",(event)=>{
+if(event.key === "Enter"){
+addTodo();
+}
+});
+
+</script>
+
+</body>
+</html>
