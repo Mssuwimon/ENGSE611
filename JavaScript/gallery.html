@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Image Gallery</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:40px;
+}
+
+.gallery{
+    width:600px;
+    margin:auto;
+}
+
+.viewer-wrapper{
+    position:relative;
+}
+
+.viewer{
+    width:100%;
+    border-radius:10px;
+}
+
+.nav-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    font-size:24px;
+    padding:10px;
+    cursor:pointer;
+}
+
+.prev{
+    left:10px;
+}
+
+.next{
+    right:10px;
+}
+
+.thumbs{
+    margin-top:10px;
+}
+
+.thumbs img{
+    width:80px;
+    margin:5px;
+    cursor:pointer;
+    opacity:0.6;
+    border-radius:6px;
+}
+
+.thumbs img.active{
+    opacity:1;
+    border:3px solid #007bff;
+}
+
+.hint{
+    margin-top:10px;
+    color:#666;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="gallery">
+
+<div class="viewer-wrapper">
+<img id="mainImage" class="viewer" src="" alt="Gallery image">
+
+<button class="nav-btn prev" id="prevBtn">&#8592;</button>
+<button class="nav-btn next" id="nextBtn">&#8594;</button>
+</div>
+
+<div class="thumbs" id="thumbContainer"></div>
+
+<div class="hint">
+ใช้ปุ่ม ← → บนคีย์บอร์ด หรือคลิกปุ่ม ซ้าย-ขวา เพื่อเปลี่ยนรูป
+</div>
+
+</div>
+
+
+<script>
+
+// รายการรูปภาพ (ตามสไลด์)
+const images = [
+
+"https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=800",
+
+"https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=800",
+
+"https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=800",
+
+"https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=800"
+
+];
+
+const mainImage = document.getElementById("mainImage");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const thumbContainer = document.getElementById("thumbContainer");
+
+let currentIndex = 0;
+
+
+// สร้าง thumbnail
+images.forEach((src,index)=>{
+
+const img = document.createElement("img");
+
+img.src = src;
+
+img.dataset.index = index;
+
+img.addEventListener("click",()=>{
+
+currentIndex = index;
+
+updateImage();
+
+});
+
+thumbContainer.appendChild(img);
+
+});
+
+
+// อัปเดตรูปหลัก
+function updateImage(){
+
+mainImage.src = images[currentIndex];
+
+const thumbs = thumbContainer.querySelectorAll("img");
+
+thumbs.forEach((thumb,i)=>{
+
+thumb.classList.toggle("active", i === currentIndex);
+
+});
+
+}
+
+
+// รูปถัดไป
+function showNext(){
+
+currentIndex = (currentIndex + 1) % images.length;
+
+updateImage();
+
+}
+
+
+// รูปก่อนหน้า
+function showPrev(){
+
+currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+updateImage();
+
+}
+
+
+// ปุ่มคลิก
+prevBtn.addEventListener("click", showPrev);
+nextBtn.addEventListener("click", showNext);
+
+
+// ปุ่มคีย์บอร์ด
+document.addEventListener("keydown",(e)=>{
+
+if(e.key === "ArrowRight") showNext();
+
+if(e.key === "ArrowLeft") showPrev();
+
+});
+
+
+// เริ่มต้น
+updateImage();
+
+</script>
+
+</body>
+</html>

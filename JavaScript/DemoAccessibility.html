@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Demo: Accessibility (a11y) + Events</title>
+
+<style>
+body{
+font-family: Arial;
+margin:40px;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+section{
+margin-bottom:40px;
+}
+
+.btn-like{
+background:#2d7df6;
+color:white;
+padding:10px 16px;
+border-radius:6px;
+display:inline-block;
+cursor:pointer;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;
+}
+
+.modal.active{
+display:flex;
+}
+
+.modal-content{
+background:white;
+padding:20px;
+border-radius:8px;
+width:300px;
+}
+
+#menu{
+list-style:none;
+padding:0;
+width:250px;
+}
+
+#menu li{
+background:#eee;
+padding:10px;
+margin-bottom:6px;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Demo: Accessibility (a11y) + Events</h1>
+
+<!-- 1 Accessible Button -->
+<section>
+
+<h2>1) Accessible Button (div → button)</h2>
+
+<div id="myBtn" class="btn-like">
+เปิดเมนู (กด Enter/Space ได้)
+</div>
+
+</section>
+
+
+<!-- 2 Modal -->
+<section>
+
+<h2>2) Modal with Focus Trap + ESC Close</h2>
+
+<button id="openModal">
+เปิด Modal
+</button>
+
+<div id="modal" class="modal" aria-hidden="true">
+
+<div class="modal-content" tabindex="0">
+
+<h3>ตัวอย่าง</h3>
+
+<p>ตัวอย่าง Modal ที่รองรับคีย์บอร์ด</p>
+
+<button id="closeModal">
+ปิด Modal
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- 3 Keyboard Menu -->
+<section>
+
+<h2>3) Keyboard Menu Navigation (Arrow Up/Down)</h2>
+
+<ul id="menu" role="listbox">
+
+<li tabindex="0">หน้าแรก</li>
+<li tabindex="0">โปรไฟล์</li>
+<li tabindex="0">ตั้งค่า</li>
+
+</ul>
+
+</section>
+
+
+<script>
+
+// ================================
+// 1 Accessible Button
+// ================================
+
+const myBtn = document.querySelector("#myBtn")
+
+myBtn.setAttribute("role","button")
+myBtn.setAttribute("tabindex","0")
+myBtn.setAttribute("aria-label","เปิดเมนูหลัก")
+
+myBtn.addEventListener("click",()=>{
+alert("ปุ่มทำงานแล้ว!")
+})
+
+myBtn.addEventListener("keydown",(e)=>{
+
+if(e.key==="Enter" || e.key===" "){
+e.preventDefault()
+myBtn.click()
+}
+
+})
+
+
+// ================================
+// 2 Modal with Focus Trap
+// ================================
+
+const openBtn = document.querySelector("#openModal")
+const closeBtn = document.querySelector("#closeModal")
+const modal = document.querySelector("#modal")
+
+let lastFocusedElement = null
+
+openBtn.addEventListener("click",()=>{
+
+lastFocusedElement = document.activeElement
+
+modal.classList.add("active")
+modal.setAttribute("aria-hidden","false")
+
+closeBtn.focus()
+
+})
+
+function closeModal(){
+
+modal.classList.remove("active")
+modal.setAttribute("aria-hidden","true")
+
+if(lastFocusedElement){
+lastFocusedElement.focus()
+}
+
+}
+
+closeBtn.addEventListener("click",closeModal)
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="Escape" && modal.classList.contains("active")){
+closeModal()
+}
+
+})
+
+
+// ================================
+// Focus Trap
+// ================================
+
+modal.addEventListener("keydown",(e)=>{
+
+const focusable = modal.querySelectorAll("button, [tabindex='0']")
+const first = focusable[0]
+const last = focusable[focusable.length-1]
+
+if(e.key==="Tab"){
+
+if(e.shiftKey && document.activeElement===first){
+e.preventDefault()
+last.focus()
+}
+
+else if(!e.shiftKey && document.activeElement===last){
+e.preventDefault()
+first.focus()
+}
+
+}
+
+})
+
+
+// ================================
+// 3 Keyboard Navigation Menu
+// ================================
+
+const items = document.querySelectorAll("#menu li")
+
+let index = 0
+
+items[index].focus()
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="ArrowDown"){
+
+index = (index+1) % items.length
+items[index].focus()
+
+}
+
+if(e.key==="ArrowUp"){
+
+index = (index-1+items.length) % items.length
+items[index].focus()
+
+}
+
+if(e.key==="Enter"){
+
+alert("คุณเลือก: "+items[index].textContent)
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
